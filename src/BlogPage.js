@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { blogdata } from "./blogdata";
 
 function BlogPage() {
     return (
         <>
-            <h1>BlogPage</h1>
+            <h1>Blog</h1>
             
+            <Outlet />
+
             <ul>
                 {blogdata.map(post => (
                     <BlogLink key={post.slog} post={post} />
@@ -25,3 +27,5 @@ function BlogLink({ post }) {
 }
 
 export { BlogPage };
+
+// El outlet usado aquí marca el lugar en el que vamos a situar el componente anidado, en esta caso el post (BlogPost)
