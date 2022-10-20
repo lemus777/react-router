@@ -1,8 +1,11 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Menu } from './Menu';
+import { AuthProvider } from './auth';
 import { HomePage } from './HomePage';
 import { BlogPage } from './BlogPage';
 import { BlogPost } from './BlogPost';
+import { LoginPage } from './LoginPage';
+import { LogoutPage } from './LogoutPage';
 import { ProfilePage } from './ProfilePage';
 import React from 'react';
 
@@ -10,18 +13,22 @@ function App() {
   return (
     <React.Fragment>
       <HashRouter>
-        <Menu />
+        <AuthProvider>
+          <Menu />
 
-        <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Routes>
+            <Route path='/' element={<HomePage />} />
 
-          <Route path='/blog' element={<BlogPage />}>
-            <Route path=':slug' element={<BlogPost />} /> 
-          </Route>
+            <Route path='/blog' element={<BlogPage />}>
+              <Route path=':slug' element={<BlogPost />} /> 
+            </Route>
 
-          <Route path='/profile' element={<ProfilePage />} />
-          <Route path='*' element={<p>Not found</p>} />
-        </Routes>
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/logout' element={<LogoutPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='*' element={<p>Not found</p>} />
+          </Routes>
+        </AuthProvider>
       </HashRouter>
     </React.Fragment>
   );
