@@ -11,7 +11,11 @@ function BlogPost() {
 
   const blogpost = blogdata.find(post => post.slug === slug);
 
-  const canDelete = auth.user?.isAdmin || blogpost.author === auth.user?.username;
+  let canDelete = false;
+
+  if (auth.user) {
+    canDelete = auth.user.isAdmin || blogpost.author === auth.user.username;
+  };
 
   const returnToBlog = () => {
     navigate('/blog');
